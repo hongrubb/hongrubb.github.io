@@ -77,14 +77,14 @@
 
 <meta name="description" content="我只知道自己知道的事情">
 <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="hongrubbのblog">
 <meta property="og:description" content="我只知道自己知道的事情">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-26T13:18:03.266Z">
+<meta property="og:updated_time" content="2019-08-26T12:43:13.933Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
+<meta name="twitter:title" content="about">
 <meta name="twitter:description" content="我只知道自己知道的事情">
 
 
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/">
+  <link rel="canonical" href="http://yoursite.com/about/">
 
 
 
@@ -707,6 +707,9 @@
 
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <script src="/js/src/md5.min.js"></script>
+
    <script type="text/javascript">
         var gitalk = new Gitalk({
           clientID: 'd3ff8b80579ffdcb32cb',
@@ -714,11 +717,13 @@
           repo: 'hongrubb.github.io',
           owner: 'hongrubb',
           admin: ['hongrubb'],
-          id: location.pathname,
+
+          id: md5(location.pathname),
+
           distractionFreeMode: 'true'
         })
-        gitalk.render('gitalk-container')           
-       </script>
+        gitalk.render('gitalk-container')
+    </script>
 
   
 
