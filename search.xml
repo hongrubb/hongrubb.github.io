@@ -13,4 +13,12 @@
     <url>%2F2019%2F07%2F18%2F%E6%96%B0%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95%2F</url>
     <content type="text"><![CDATA[新的开始从以前的阿里云转到了github pages从Word Press转到了Hexo以前的一些文章忘了备份，不过没关系，正好当作新的开始！]]></content>
   </entry>
+  <entry>
+    <title><![CDATA[C++模拟Penney's game（欺负人的小游戏]]></title>
+    <url>%2F2018%2F12%2F01%2FPenney's%20game%2F</url>
+    <content type="text"><![CDATA[Penney’s gamePenney’s game是一个两个玩家之间生成用“正面”和“反面”为代称产生二进制数列的游戏。——Wikipedia 存在着不太符合直觉的地方，蛮有趣的 解释与粗略证明举个例子，A和B两个人不停的扔硬币玩。如果序列中先出现“正正反”算A赢，先出现“反正正”算B赢。凭着直觉来看的话，是不是还算公平？毕竟扔三次硬币，两者出现的概率都是1/8，而且两者又是互相取反的关系，似乎没什么问题。 それは違うぞ！这个游戏是不公平的，B获胜的概率要远大于A，是A的3倍。为什么会这样子呢？虽然“正正反”与“反正”在一串序列中（序列足够长）出现的概率是相等的。但在这个游戏中，存在一个先后的关系，先出现序列的人就赢了。 证明一下：前两次扔硬币可能的结果分别是：“正正”、“正反”、“反反”、“反正”。那么只有结果为“正正”的时候，A才（有机会）获胜，因为剩下的三种情形里A想要获胜的话之后必须出现“正正”或者“正”，而因为前面有一个“反”的存在，B永远比A先达成条件获胜。 所以说在这种情况下，前两次的结果就已经决定了游戏的结局。结论就是B获胜的概率是A的三倍。 别的情况就不解释了，都是一个道理，本质就是出现的先后顺序，当A猜测的前两字节刚好对上时，B的后两字节也对上。 使用C++来模拟测试123456789101112131415161718192021222324#include &lt;bits/stdc++.h&gt;using namespace std;const int N = 10000; // 循环次数int A = 0, B = 0; // A与B获胜次数string strA = "110", strB = "011";int main() &#123; srand((unsigned)time(NULL)); // 产生随机数 for (int i = 0; i &lt; N; i++) &#123; string line; size_t foundA = 50, foundB = 50; // 此处应使用size_t类型 for (int j = 0; j &lt; 50; j++) line += rand() % 2 + '0'; foundA = line.find(strA); foundB = line.find(strB); if (foundA &lt; foundB) A++; else B++; &#125; cout &lt;&lt; A &lt;&lt; endl &lt;&lt; B; return 0;&#125; 进行了1万次的比较：A获胜的次数为2430B获胜的次数为7570 可视为3：1 小知识Penney的游戏是一个非传递博弈，什么是非传递博弈呢？举个例子：石头剪刀布。A &gt; B, B &gt; C 不能得出A &gt; C的结论。Penney’s game 也是一样的，不能d通过制胜关系来寻找策略。 那么它的最优解应该怎么找呢？可以参考这个表格 2号玩家的策略：第一个字节与1号玩家的第二个字节相反，第二个字节与1号玩家的第一个字节相同，第三个字节与1号玩家的第二个字节相同。]]></content>
+      <tags>
+        <tag>博弈论 数学</tag>
+      </tags>
+  </entry>
 </search>
