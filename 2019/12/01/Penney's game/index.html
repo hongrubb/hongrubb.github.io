@@ -351,7 +351,7 @@
 <p>存在着不太符合直觉的地方，蛮有趣的</p>
 <a id="more"></a>
 
-<h1 id="解释与粗略证明"><a href="#解释与粗略证明" class="headerlink" title="解释与粗略证明"></a>解释与粗略证明</h1><p>举个例子，A和B两个人不停的扔硬币玩。如果序列中先出现“正正反”算A赢，先出现“反正正”算B赢。凭着直觉来看的话，是不是还算公平？毕竟扔三次硬币，两者出现的概率都是1/8，而且两者又是互相取反的关系，似乎没什么问题。</p>
+<h1 id="解释与简单证明"><a href="#解释与简单证明" class="headerlink" title="解释与简单证明"></a>解释与简单证明</h1><p>举个例子，A和B两个人不停的扔硬币玩。如果序列中先出现“正正反”算A赢，先出现“反正正”算B赢。凭着直觉来看的话，是不是还算公平？毕竟扔三次硬币，两者出现的概率都是1/8，而且两者又是互相取反的关系，似乎没什么问题。</p>
 <p>それは違うぞ！这个游戏是不公平的，B获胜的概率要远大于A，是A的3倍。为什么会这样子呢？虽然“正正反”与“反正”在一串序列中（序列足够长）出现的概率是相等的。但在这个游戏中，存在一个先后的关系，先出现序列的人就赢了。</p>
 <p>证明一下：前两次扔硬币可能的结果分别是：“正正”、“正反”、“反反”、“反正”。那么只有结果为“正正”的时候，A才（有机会）获胜，因为剩下的三种情形里A想要获胜的话之后必须出现“正正”或者“正”，而因为前面有一个“反”的存在，B永远比A先达成条件获胜。</p>
 <p>所以说在这种情况下，前两次的结果就已经决定了游戏的结局。结论就是B获胜的概率是A的三倍。</p>
@@ -554,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Penney’s-game"><span class="nav-number">1.</span> <span class="nav-text">Penney’s game</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解释与粗略证明"><span class="nav-number">2.</span> <span class="nav-text">解释与粗略证明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用C-来模拟测试"><span class="nav-number">3.</span> <span class="nav-text">使用C++来模拟测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小知识"><span class="nav-number">4.</span> <span class="nav-text">小知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Penney’s-game"><span class="nav-number">1.</span> <span class="nav-text">Penney’s game</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解释与简单证明"><span class="nav-number">2.</span> <span class="nav-text">解释与简单证明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用C-来模拟测试"><span class="nav-number">3.</span> <span class="nav-text">使用C++来模拟测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小知识"><span class="nav-number">4.</span> <span class="nav-text">小知识</span></a></li></ol></div>
             
 
           </div>
