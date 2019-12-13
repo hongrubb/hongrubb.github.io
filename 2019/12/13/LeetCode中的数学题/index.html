@@ -362,6 +362,49 @@
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>c++</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">string</span> str = to_string(n);</span><br><span class="line">        reverse(str.begin(), str.end());</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> left = n / (<span class="keyword">int</span>)<span class="built_in">pow</span>(<span class="number">10</span>, i);     <span class="comment">//当前位置左边的数</span></span><br><span class="line">            <span class="keyword">int</span> right =  n % (<span class="keyword">int</span>)<span class="built_in">pow</span>(<span class="number">10</span>, i<span class="number">-1</span>); <span class="comment">//当前位置右边的数</span></span><br><span class="line">            cnt += left * <span class="built_in">pow</span>(<span class="number">10</span>, i<span class="number">-1</span>);             <span class="comment">// 情况1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> k = str[i<span class="number">-1</span>] - <span class="string">'0'</span>;</span><br><span class="line">            <span class="keyword">if</span> (k &gt; <span class="number">1</span>) cnt += (<span class="keyword">int</span>)<span class="built_in">pow</span>(<span class="number">10</span>, i<span class="number">-1</span>);    <span class="comment">//情况2.1</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">1</span>) cnt += right + <span class="number">1</span>;      <span class="comment">//情况2.2</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">​</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">举例：</span></span><br><span class="line"><span class="comment">12*45</span></span><br><span class="line"><span class="comment">(1): 左边取0-11, 一共有12 * 100种</span></span><br><span class="line"><span class="comment">(2)：左边取12</span></span><br><span class="line"><span class="comment">    (2.1): *处的数大于1，一共有100种</span></span><br><span class="line"><span class="comment">    (2.2): *处的数等于1，一共有46种</span></span><br><span class="line"><span class="comment">    (2.3): *处的数等于0，一共有0种。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
 
+<h1 id="00335-self-crossing"><a href="#00335-self-crossing" class="headerlink" title="00335-self-crossing"></a><a href="https://leetcode.com/problems/self-crossing/" target="_blank">00335-self-crossing</a></h1><h2 id="Problem-1"><a href="#Problem-1" class="headerlink" title="Problem"></a>Problem</h2><div><p>You are given an array <i>x</i> of <code>n</code> positive numbers. You start at point <code>(0,0)</code> and moves <code>x[0]</code> metres to the north, then <code>x[1]</code> metres to the west, <code>x[2]</code> metres to the south, <code>x[3]</code> metres to the east and so on. In other words, after each move your direction changes counter-clockwise.</p>
+
+<p>Write a one-pass algorithm with <code>O(1)</code> extra space to determine, if your path crosses itself, or not.</p>
+
+<p>&nbsp;</p>
+
+<p><b>Example 1:</b></p>
+
+<pre><strong>┌───┐
+│ &nbsp; │
+└───┼──&gt;
+&nbsp; &nbsp; │
+
+Input: </strong><code>[2,1,1,2]</code>
+<strong>Output: </strong>true
+</pre>
+
+<p><b>Example 2:</b></p>
+
+<pre><strong>┌──────┐
+│ &nbsp; &nbsp; &nbsp;│
+│
+│
+└────────────&gt;
+
+Input:</strong> <code>[1,2,3,4]</code>
+<strong>Output: </strong>false 
+</pre>
+
+<p><b>Example 3:</b></p>
+
+<pre><strong>┌───┐
+│ &nbsp; │
+└───┼&gt;
+
+Input:</strong> <code>[1,1,1,1]</code>
+<strong>Output:</strong> true 
+</pre>
+</div>
+
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><p>c++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSelfCrossing</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt; x.size(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(x[i<span class="number">-1</span>]&lt;=x[i<span class="number">-3</span>] &amp;&amp; x[i]&gt;=x[i<span class="number">-2</span>]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;<span class="number">3</span> &amp;&amp; x[i]+x[i<span class="number">-4</span>]&gt;=x[i<span class="number">-2</span>] &amp;&amp; x[i<span class="number">-1</span>]==x[i<span class="number">-3</span>]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;<span class="number">4</span> &amp;&amp; x[i<span class="number">-1</span>]+x[i<span class="number">-5</span>]&gt;=x[i<span class="number">-3</span>] &amp;&amp; x[i<span class="number">-1</span>]&lt;=x[i<span class="number">-3</span>] &amp;&amp; x[i]+x[i<span class="number">-4</span>]&gt;=x[i<span class="number">-2</span>] &amp;&amp; x[i<span class="number">-4</span>]&lt;=x[i<span class="number">-2</span>]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">画图得知，交叉一共有三种情况：</span></span><br><span class="line"><span class="comment">    case1: i and i-3 can cross</span></span><br><span class="line"><span class="comment">    case2: i and i-4 can cross</span></span><br><span class="line"><span class="comment">    case3: i and i-5 can cross</span></span><br><span class="line"><span class="comment">注意不要忽略与之前的边重叠的case。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -552,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#00233-number-of-digit-one"><span class="nav-number">1.</span> <span class="nav-text">00233-number-of-digit-one</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#00233-number-of-digit-one"><span class="nav-number">1.</span> <span class="nav-text">00233-number-of-digit-one</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#00335-self-crossing"><span class="nav-number">2.</span> <span class="nav-text">00335-self-crossing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-1"><span class="nav-number">2.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
             
 
           </div>
